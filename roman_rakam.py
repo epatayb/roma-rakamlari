@@ -35,7 +35,7 @@ def to_number(roman):
         'D': 500,
         'M': 1000,
     }
-
+    
     total = 0
     length = len(roman)
 
@@ -46,8 +46,7 @@ def to_number(roman):
             total += numbers[roman[i]]
 
     total += numbers[roman[length-1]]
-    return total
-
+    return "Converted to: " + total
 
 print(to_number("MCMVII"))
 
