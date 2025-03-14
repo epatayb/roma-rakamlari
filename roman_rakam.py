@@ -1,25 +1,39 @@
-def to_number(roman):
-    numbers = {
-        'I': 1,
-        'V': 5,
-        'X': 10,
-        'L': 50,
-        'C': 100,
-        'D': 500,
-        'M': 1000,
-    }
+class RomanToNumber:
+    def __init__(self, roman: str):
+        self.roman = roman.upper()
+        self.numbers = {
+            'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000
+        }
     
-    total = 0
-    length = len(roman)
+    # Geçerli Roma rakamları içerip içermediğini kontrol eden fonksiyon.
+    def is_valid_roman(self):
+        return all(char in self.numbers for char in self.roman)
+    
+    # Roma rakamını 10'luk sisteme çevirir.
+    def to_number(self):
+        # Roma rakamlarını kontrolün gerçekleştiği kod.
+        if not self.is_valid_roman():
+            raise ValueError("Geçersiz Roma rakamı girdiniz!")
 
-    for i in range(length-1):
-        if (numbers[roman[i]] < numbers[roman[i+1]]):
-            total -= numbers[roman[i]]
-        else:
-            total += numbers[roman[i]]
+        total = 0
+        length = len(self.roman)
 
-    total += numbers[roman[length-1]]
-    return print(f"Converted to: {total}")
+        for i in range(length - 1):
+            if self.numbers[self.roman[i]] < self.numbers[self.roman[i + 1]]:
+                total -= self.numbers[self.roman[i]]
+            else:
+                total += self.numbers[self.roman[i]]
 
-print(to_number("MCMVII"))
+        total += self.numbers[self.roman[length - 1]]
+        return total
 
+
+# Kullanıcıdan giriş alma
+user_input = input("Enter a Roman numeral: ").strip()
+
+# Kullanım
+try:
+    roman_number = RomanToNumber(user_input)
+    print(f"Converted to: {roman_number.to_number()}")
+except ValueError as e:
+    print(e)
