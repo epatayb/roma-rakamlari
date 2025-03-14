@@ -19,7 +19,7 @@ def to_number(roman):
             total += numbers[roman[i]]
 
     total += numbers[roman[length-1]]
-    return "Converted to: " + total
+    return print(f"Converted to: {total}")
 
 print(to_number("MCMVII"))
 
